@@ -1,0 +1,31 @@
+/ {
+    chosen {
+        zmk,board = &lily58;
+    };
+};
+
+&lily58 {
+    compatible = "zmk,lily58";
+
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        a-gpios = <PIN_A (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <PIN_B (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <20>;
+        status = "okay";
+    };
+
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        a-gpios = <PIN_X (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <PIN_Y (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <20>;
+        status = "okay";
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        triggers-per-rotation = <20>;
+    };
+};
